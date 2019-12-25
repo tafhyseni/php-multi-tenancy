@@ -1,0 +1,18 @@
+{
+    "name": "tafhyseni/php-multi-tenancy",
+    "description": "Handling and managing Multi Tenancy objects",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mustafe Hyseni",
+            "email": "tafhyseni@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Tafhyseni\\PhpMultiTenancy\\": "src/"
+        }
+    }
+}
