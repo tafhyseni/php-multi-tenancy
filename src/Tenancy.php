@@ -42,7 +42,7 @@ class Tenancy
      */
     public $query;
 
-    public function __construct($query, $db_config = array())
+    public function __construct($db_config = array())
     {
         $this->_connect_main($db_config);
 
@@ -148,6 +148,15 @@ class Tenancy
                 $this->_throwError($this->tenancy_connection);
             }
         }
+    }
+
+    /**
+     * Auto generate Tenant name
+     * @return string
+     */
+    public function auto_name()
+    {
+        return $this->_shuffle_name();
     }
 
     /**

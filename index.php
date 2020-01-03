@@ -16,7 +16,6 @@ $db_config = array(
 );
 $query = "SELECT * FROM new_table";
     $taf = new Tenancy(
-        $query,
         $db_config
     );
     $taf->index();
