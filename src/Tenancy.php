@@ -100,6 +100,7 @@ class Tenancy
     /**
      * Generates a full tenancy
      * @param [name] string
+     * @return string
      */
     public function generate(string $name = null, $tables = array(), $withData = FALSE)
     {
