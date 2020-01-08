@@ -37,7 +37,7 @@ class TenancyTest extends TestCase
     public function auto_generate_name()
     {
         $tenancy_name = $this->tenancy->auto_name();
-        $this->assertIsString('string', 'String vollahi');
+        $this->assertIsString('string', $tenancy_name);
     }
 
 }

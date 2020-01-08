@@ -4,3 +4,4 @@ composer.lock
 vendor
 coverage
 .phpunit.result.cache
+index.php

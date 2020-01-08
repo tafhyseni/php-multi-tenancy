@@ -9,11 +9,15 @@ class Tenancy
 
     const STRING_SHUFFLE = 5;
 
-    // protected $config;
     protected $config = [
         'CREATE' => 'CREATE TABLE {table} LIKE {database_name}.{table}',
         'INSERT' => 'INSERT INTO {tenancy_name}.{table} SELECT * FROM {database_name}.{table}'
     ];
+
+    /**
+     * Whether transactions will be used or not
+     */
+    public $transactions = true;
 
     /**
      * Will be holding the DB Connection
@@ -90,7 +94,7 @@ class Tenancy
     private function _close_connections()
     {
         mysqli_close($this->database);
-        mysqli_close($this->tenancy_name);
+        mysqli_close($this->tenancy_connection);
     }
 
     /**
@@ -120,6 +124,8 @@ class Tenancy
         foreach($tables as $table) {
             $this->copy_table_from_master($table, $withData);
         }
+
+        $this->_close_connections();
     }
 
     /**
@@ -137,13 +143,13 @@ class Tenancy
      */
     public function copy_table_from_master($table, $withData = FALSE)
     {
-        $res = mysqli_query($this->tenancy_connection, "CREATE TABLE " . $table . " LIKE " . $this->database_name . "." . $table);
+        $res = mysqli_query($this->tenancy_connection, $this->_prepare_query('CREATE', array('table' => $table, 'database_name' => $this->database_name)));
         if(!$res) {
             $this->_throwError($this->tenancy_connection);
         }
 
         if($withData) {
-            $res = mysqli_query($this->tenancy_connection, "INSERT INTO ". $this->tenancy_name . '.' . $table . " SELECT * FROM " . $this->database_name . "." . $table);
+            $res = mysqli_query($this->tenancy_connection, $this->_prepare_query('INSERT', array('tenancy_name' => $this->tenancy_name, 'table' => $table, 'database_name' => $this->database_name)));
             if(!$res) {
                 $this->_throwError($this->tenancy_connection);
             }
@@ -177,8 +183,41 @@ class Tenancy
         return $this->database_name . '_' . $shuffle . '_' . time();
     }
 
+    /**
+     * Prepares query of our pre defined configuration queries
+     * @return string
+     */
+    private function _prepare_query($type, $parameters = array())
+    {
+        if($type === 'CREATE')
+        {
+            if($parameters['table'] == "" || $parameters['database_name'] == "")
+            {
+                throw new Exception("An error happened: Missing parameters on database creation! ");
+            }
+
+            return str_replace(
+                array('{table}', '{database_name}'),
+                array($parameters['table'], $parameters['database_name']),
+                $this->config['CREATE']
+            );
+        }elseif($type === 'INSERT') {
+            if($parameters['tenancy_name'] == "" || $parameters['table'] == "" || $parameters['database_name'] == "")
+            {
+                throw new Exception("An error happened: Missing parameters on database inserts! ");
+            }
+
+            return str_replace(
+                array('{tenancy_name}', '{table}', '{database_name}'),
+                array($parameters['tenancy_name'], $parameters['table'] ,$parameters['database_name']),
+                $this->config['INSERT']
+            );
+        }
+
+    }
+
     public function index()
     {
-        print_r($this->config['CREATE']);
+        echo $this->_prepare_query('INSERT', array('table' => 'tabela', 'database_name' => 'db_name'));
     }
 }
