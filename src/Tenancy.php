@@ -114,8 +114,8 @@ class Tenancy
 
         // connect tenant
         $this->tenancy_connection->select_db($name);
-        $this->tenancy_name = $name;
-        
+        $this->tenancy_name = $name;      
+
         // Copy a structure
         if(empty($tables)) {
             $tables = $this->get_tables();
@@ -126,6 +126,8 @@ class Tenancy
         }
 
         $this->_close_connections();
+
+        return $name;
     }
 
     /**
@@ -144,6 +146,7 @@ class Tenancy
     public function copy_table_from_master($table, $withData = FALSE)
     {
         $res = mysqli_query($this->tenancy_connection, $this->_prepare_query('CREATE', array('table' => $table, 'database_name' => $this->database_name)));
+        
         if(!$res) {
             $this->_throwError($this->tenancy_connection);
         }
@@ -214,10 +217,5 @@ class Tenancy
             );
         }
 
-    }
-
-    public function index()
-    {
-        echo $this->_prepare_query('INSERT', array('table' => 'tabela', 'database_name' => 'db_name'));
     }
 }
