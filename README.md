@@ -6,7 +6,11 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/tafhyseni/php-multi-tenancy.svg?style=flat-square)](https://packagist.org/packages/tafhyseni/php-multi-tenancy)
 
 Simple PHP package to help you control, create and manage Tenancy architectural databases. 
-Currently this works only on MySQL, but other databases will be added shortly! Want to contribute.. you're welcome :)
+
+Currently this works only on MySQL, but other databases will be added shortly! 
+Also, this does work only on same hostname databases, it will also soon extended to support different hostnames..
+
+Want to contribute.. you're welcome :)
 
 ## Installation
 
