@@ -22,7 +22,8 @@ class TenancyTest extends TestCase
                 'tenancy_hostname' => '127.0.0.1',
                 'tenancy_username' => 'root',
                 'tenancy_password' => ''
-            )   
+            ),
+            true  
         );
         self::assertTrue(true);
     }

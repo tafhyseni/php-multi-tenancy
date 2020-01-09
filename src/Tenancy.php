@@ -46,8 +46,10 @@ class Tenancy
      */
     public $query;
 
-    public function __construct($db_config = array())
+    public function __construct($db_config = array(), $dummy = FALSE)
     {
+        if($dummy) return true;
+
         $this->_connect_main($db_config);
 
         $this->_connect_tenant($db_config);
