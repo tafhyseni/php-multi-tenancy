@@ -23,6 +23,7 @@ composer require tafhyseni/php-multi-tenancy
 Initialization is simple as long as you do not forget to pass configuration properly
 
 ``` php
+use Tafhyseni\PhpMultiTenancy\Tenancy;
 $tenancy = new Tenancy(
     array(
         'hostname' => '127.0.0.1',
