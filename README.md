@@ -1,4 +1,4 @@
-# Very short description of the package
+# Fast and simple dealing with Php Multi Tenancy
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/tafhyseni/php-multi-tenancy.svg?style=flat-square)](https://packagist.org/packages/tafhyseni/php-multi-tenancy)
 [![Build Status](https://img.shields.io/travis/tafhyseni/php-multi-tenancy/master.svg?style=flat-square)](https://travis-ci.org/tafhyseni/php-multi-tenancy)
