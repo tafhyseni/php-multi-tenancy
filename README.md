@@ -2,7 +2,6 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/tafhyseni/php-multi-tenancy.svg?style=flat-square)](https://packagist.org/packages/tafhyseni/php-multi-tenancy)
 [![Build Status](https://img.shields.io/travis/tafhyseni/php-multi-tenancy/master.svg?style=flat-square)](https://travis-ci.org/tafhyseni/php-multi-tenancy)
-[![Quality Score](https://img.shields.io/scrutinizer/g/tafhyseni/php-multi-tenancy.svg?style=flat-square)](https://scrutinizer-ci.com/g/tafhyseni/php-multi-tenancy)
 [![Total Downloads](https://img.shields.io/packagist/dt/tafhyseni/php-multi-tenancy.svg?style=flat-square)](https://packagist.org/packages/tafhyseni/php-multi-tenancy)
 
 Simple PHP package to help you control, create and manage Tenancy architectural databases. 
