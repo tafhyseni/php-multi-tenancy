@@ -203,7 +203,7 @@ class Tenancy
 
             return str_replace(
                 ['{table}', '{database_name}'],
-                [$parameters['table'], $parameters['database_name']],
+                ['`'.$parameters['table'].'`', $parameters['database_name']],
                 $this->config['CREATE']
             );
         } elseif ($type === 'INSERT') {
@@ -213,7 +213,7 @@ class Tenancy
 
             return str_replace(
                 ['{tenancy_name}', '{table}', '{database_name}'],
-                [$parameters['tenancy_name'], $parameters['table'], $parameters['database_name']],
+                [$parameters['tenancy_name'], '`'.$parameters['table'].'`', $parameters['database_name']],
                 $this->config['INSERT']
             );
         }
